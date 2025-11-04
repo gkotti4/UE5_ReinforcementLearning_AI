@@ -2,9 +2,9 @@
 
 Reinforcement Learning AI systems implemented in **Unreal Engine 5 (C++)**, exploring both classic **Q-Learning** and **Deep Q-Network (DQN)** approaches for adaptive enemy behavior in real-time combat.
 
-> **Note:** This is a reupload of academic projects completed in 2024. 
-> Not under active development, but preserved to demonstrate applied reinforcement learning techniques. 
-> The `dqn_source/` and `qlearning_source/` folders contain only the AI-related C++ source files — not the full Unreal Engine project directories. 
+> **Note:** This is a reupload of academic projects completed in 2024.  
+> Not under active development, but preserved to demonstrate applied reinforcement learning techniques.  
+> The `dqn_source/` and `qlearning_source/` folders contain only the AI-related C++ source files — not the full Unreal Engine project directories.  
 
 ---
 
