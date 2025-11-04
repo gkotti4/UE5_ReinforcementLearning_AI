@@ -1,0 +1,118 @@
+--- Q Learning ---
+
+Q(s,a)←Q(s,a)+α[r+γ*maxQ(s',a)-Q(s,a)] 
+
+Q-Learning Term		Your Code Equivalent
+s (state)		CurrentState = EncodeState()
+a (action)		SelectedAction = ChooseAction(CurrentState)
+r (reward)		Reward = GetReward()
+s' (new state)		NewState = EncodeState() (after action)
+Q-value update		UpdateQValue(CurrentState, SelectedAction, Reward, NewState)
+
+
+
+			- Q Learning Notes -
+SMALL State & Action Space
+More rewards are fine
+
+
+			- Q Learning Code Locations -
+QLearningEnemy
+QLearningTypes
+KnightCharacter
+Weapon
+
+
+
+			- Reward Values -
+
+Implemented
+Successful Attack: +1		(in Knight Get_Hit)
+Successful Dodge: +0.25		(QEnemy OnDodgeEnd)
+Being Hit: -1			(QEnemy Get_Hit)
+Target Dies: +10		(in Knight Get_Hit or Die)
+Self Dies: -10			(QEnemy Get_Hit or Die)
+Healing: +0.25			(QEnemy SetToHealing)
+Attacked outside Range: -1.f	(QEnemy)
+Attacked inside Range: +1.f	(QEnemy)
+Swing and miss: -0.75		(Weapon)
+Dodge Target Attack: +0.5	(QEnemy)
+Guard Target Attack: +0.35	(Weapon)
+
+
+
+
+
+			- Places Calling Update -
+QEnemy -> at a steady interval
+Target -> after reward (in Get_Hit)
+
+
+
+
+			- Storage -
+Options:
+	- FString with FFileHelper	(easiest)
+	- FArchive with binary files	(better long term)
+	- FJsonObject as .json		(most flexible)
+
+
+
+
+			- Optimization -
+Storage + Lookup:
+	State:
+	- Compressed FString for State
+	- Raw Keys or Hashes for State instead of FString
+
+
+
+
+			- Shared QTable - Q Manager -
+QEnemy(s) -QTable-> QManager (avg tables) -> save To Disk on EndPlay
+
+
+
+			- Ending Notes -
+Add more rewards for things like: attacked if in combat range (or change distance to bool InTargetRange or delete)
+
+QEnemy Test Run #1: 
+Only attacked then got stuck in wait state and stopped chasing (CHECK rewards, chasing function, attack function) 
+Attack Issue: Spammed attacks randomly at a pace that shouldn't be allowed (much too fast)
+Exploration should be increased or looked at, only two actions were taken
+
+Figure out storage, possibly using QManager
+
+
+
+
+
+			- BUG REPORT -
+BUG 1
+Major Issue, crashing after a few seconds every play through:
+Tests in weapon onBoxOverlap, Enemy, QEnemy Ticks, QLearning Functions
+MoveTo and InRange functions - all halted with if(true) return;
+
+Culprit for QLearningEnemy: GuardMontage not set in editor,
+PlayRandomMontageSection:
+	if (Montage->GetNumSections() <= 0) return; causing editor to crash
+Change:
+	if (!Montage || Montage->GetNumSections() <= 0) return;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
