@@ -130,4 +130,5 @@ struct QLearningRewards
 	static constexpr float WaitPenalty = -0.5f; // in use
 	
 	
+
 };
