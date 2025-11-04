@@ -1,4 +1,4 @@
-# UE5 Reinforcement Learning AI
+# UE5 Reinforcement Learning 
 
 Reinforcement Learning AI systems implemented in **Unreal Engine 5 (C++)**, exploring both classic **Q-Learning** and **Deep Q-Network (DQN)** approaches for adaptive enemy behavior in real-time combat.
 
@@ -15,6 +15,7 @@ Agents learn through reward signals to **attack, dodge, guard, and wait** based 
 ---
 
 ## Repository Organization
+```text
 UE5_ReinforcementLearning_AI/  
 ├── QLearning/  
 │ ├── ue5_source/ # Referenced UE5 C++ source files for Q-Learning logic  
@@ -24,6 +25,9 @@ UE5_ReinforcementLearning_AI/
 ├── ue5_source/   # UE5-side C++ code interacting with the Python server  
 ├── dqn_source/   # Python server code (model, training loop, comm layer)  
 └── report/       # Presentation and brief summary for DQN project  
+```
+  
+---
 
 ## Algorithms Implemented
 - **Q-Learning:** Classic temporal-difference learning using discrete state-action pairs.  
